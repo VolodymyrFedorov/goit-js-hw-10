@@ -35,9 +35,6 @@ const handleBreedSelectChange = (evt) => {
       Loading.remove();
       elements.catInfo.innerHTML = createMarkupCatInfo(cat);
       elements.catInfo.style.display = 'block'; 
-       new SlimSelect ({
-  select: '#selectElement'
-})
     })
     .catch(error => {
       console.error(error);
@@ -53,6 +50,9 @@ fetchBreeds()
     elements.breedSelect.innerHTML = option;
     Loading.remove();
     elements.breedSelect.style.display = 'block'; 
+    new SlimSelect({
+  select: '#selectElement'
+})
   })
   .catch(() => {
     Report.failure('Oops! Something went wrong!');

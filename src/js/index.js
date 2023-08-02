@@ -1,14 +1,13 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import { Loading, Report } from 'notiflix';
 import SlimSelect from 'slim-select'
-import '/node_modules/slim-select/dist/slimselect.css'
+import 'slim-select/dist/slimselect.css'
 
 const elements = {
   breedSelect: document.querySelector('.breed-select'),
   catInfo: document.querySelector('.cat-info')
 };
 
-elements.breedSelect.classList.add('hidden');
 Loading.standard('Loading data, please wait...');
 
 const createMarkupCatInfo = (cat) => `
@@ -33,30 +32,29 @@ const breedSelectChange = (evt) => {
     .then(cat => {
       Loading.remove();
       elements.catInfo.innerHTML = createMarkupCatInfo(cat);
-      elements.catInfo.style.display = 'block'; 
     })
     .catch(error => {
       console.error(error);
       Report.failure('Oops! Something went wrong!');
       Loading.remove();
-      elements.catInfo.style.display = 'block'; 
     });
 };
 
 fetchBreeds()
   .then(data => {
-    const option = data.map(({ id, name }) => `<option value="${id}">${name}</option>`);
+    const option = data
+      .map(({ id, name }) => `<option value="${id}">${name}</option>`)
+      .join('');
     elements.breedSelect.innerHTML = option;
     Loading.remove();
-    elements.breedSelect.style.display = 'block'; 
     new SlimSelect({
       select: '#selectElement',
-})
+    });
+    elements.breedSelect.classList.remove("is-hidden")
   })
   .catch(() => {
     Report.failure('Oops! Something went wrong!');
-    Loading.remove();
-    elements.breedSelect.style.display = 'block'; 
+    Loading.remove(); 
   });
 
 elements.breedSelect.addEventListener('change', breedSelectChange);

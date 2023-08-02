@@ -14,7 +14,7 @@ Loading.standard('Loading data, please wait...');
 const createMarkupCatInfo = (cat) => `
   <div class="container">
     <div class="thumb-pic">
-      <img src="${cat.url}" alt="${cat.id}" height="350" />
+      <img src="${cat.url}" alt="${cat.id}" height="500" />
     </div>
     <div class="thumb">
       <h1>${cat.breeds[0].name}</h1>
@@ -23,9 +23,8 @@ const createMarkupCatInfo = (cat) => `
     </div>
   </div>`;
 
-const handleBreedSelectChange = (evt) => {
+const breedSelectChange = (evt) => {
   evt.preventDefault();
-  elements.catInfo.style.display = 'none'; 
   Loading.standard('Loading data, please wait...');
 
   const breedSelectId = elements.breedSelect.value;
@@ -51,7 +50,7 @@ fetchBreeds()
     Loading.remove();
     elements.breedSelect.style.display = 'block'; 
     new SlimSelect({
-  select: '#selectElement'
+      select: '#selectElement',
 })
   })
   .catch(() => {
@@ -60,4 +59,4 @@ fetchBreeds()
     elements.breedSelect.style.display = 'block'; 
   });
 
-elements.breedSelect.addEventListener('change', handleBreedSelectChange);
+elements.breedSelect.addEventListener('change', breedSelectChange);

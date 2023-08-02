@@ -3,6 +3,7 @@ import axios from 'axios';
 axios.defaults.headers.common['x-api-key'] = 'live_prv4XOu3leUjObzOAVoKovC3ofskoeEGLskxizVlxsqKGtyA0btM61dS7Q76ICHU';
 axios.defaults.baseURL = 'https://api.thecatapi.com/v1/';
 
+
 function fetchBreeds() {
   return axios
     .get(`breeds/`)
@@ -30,4 +31,4 @@ function fetchCatByBreed(breedId) {
       Report.failure('Oops! Something went wrong! ');
     });
 }
-export { fetchBreeds, fetchCatByBreed };
+export {fetchBreeds, fetchCatByBreed};

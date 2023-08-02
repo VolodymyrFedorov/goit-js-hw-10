@@ -1,5 +1,7 @@
 import { fetchBreeds, fetchCatByBreed } from './cat-api.js';
 import { Loading, Report } from 'notiflix';
+import SlimSelect from 'slim-select'
+import '/node_modules/slim-select/dist/slimselect.css'
 
 const elements = {
   breedSelect: document.querySelector('.breed-select'),
@@ -33,6 +35,9 @@ const handleBreedSelectChange = (evt) => {
       Loading.remove();
       elements.catInfo.innerHTML = createMarkupCatInfo(cat);
       elements.catInfo.style.display = 'block'; 
+       new SlimSelect ({
+  select: '#selectElement'
+})
     })
     .catch(error => {
       console.error(error);
